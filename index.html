@@ -3,273 +3,525 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Madhavi Muttukuru — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<title>Madhavi Muttukuru — Brand Copywriter</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,300;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --bg: #fdf8f0;
-    --surface: #faf3e6;
-    --card: #fff9f0;
-    --accent: #c9920a;
-    --accent2: #e8b422;
-    --accent-shine: #f5c842;
-    --text: #1a1508;
-    --muted: #6b5d3f;
-    --border: #e8d9b8;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; }
-  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events:none; z-index:1000; opacity:0.5; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#13110e;
+  --surface:#1a1713;
+  --card:#211e18;
+  --border:#2e2a22;
+  --border2:#3a3428;
+  --gold:#c8860a;
+  --gold-bright:#e8a020;
+  --gold-light:#f5c060;
+  /* BRIGHTER text */
+  --white:#f5f0e8;
+  --white2:#ddd6c8;
+  --muted:#b8ae9e;
+  --faint:#706050;
+  --teal:#00c4b0;
+  --coral:#ff6b4a;
+  --violet:#9b7be0;
+  --slate:#5b9bd5;
+}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;}
 
-  nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 4rem; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom,rgba(253,248,240,0.97),transparent); backdrop-filter:blur(8px); border-bottom:1px solid rgba(232,217,184,0.4); }
-  .nav-logo { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--accent); letter-spacing:0.05em; }
-  .nav-links { display:flex; gap:2.5rem; list-style:none; }
-  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; }
-  .nav-links a:hover { color:var(--accent); }
+/* ── SCROLL PROGRESS ── */
+#scroll-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(to right,var(--gold),var(--gold-bright),var(--gold-light));z-index:9999;pointer-events:none;}
 
-  .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; padding:2rem; overflow:hidden; background:radial-gradient(ellipse 90% 70% at 50% 40%,rgba(245,200,66,0.12) 0%,transparent 70%); }
-  .hero-ring { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:50%; border:1px solid rgba(201,146,10,0.12); animation:pulse 6s ease-in-out infinite; }
-  .hero-ring:nth-child(1) { width:700px; height:700px; }
-  .hero-ring:nth-child(2) { width:500px; height:500px; animation-delay:2s; border-color:rgba(201,146,10,0.18); }
-  .hero-ring:nth-child(3) { width:300px; height:300px; animation-delay:4s; border-color:rgba(201,146,10,0.25); }
-  @keyframes pulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6;} 50%{transform:translate(-50%,-50%) scale(1.04);opacity:1;} }
-  .hero-content { position:relative; z-index:2; }
-  .hero-tag { font-size:0.75rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; opacity:0; animation:fadeUp 0.8s 0.2s forwards; }
-  .hero-name { font-family:'Playfair Display',serif; font-size:clamp(3.5rem,9vw,7rem); line-height:1.05; color:var(--text); margin-bottom:1rem; opacity:0; animation:fadeUp 0.8s 0.4s forwards; }
-  .hero-name span { font-style:italic; background:linear-gradient(135deg,var(--accent) 0%,var(--accent-shine) 50%,var(--accent) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; background-size:200% 200%; animation:shimmer 3s ease-in-out infinite; }
-  @keyframes shimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
-  .hero-tagline { font-size:clamp(0.9rem,2vw,1.1rem); color:var(--muted); max-width:520px; margin:0 auto 2.5rem; line-height:1.8; opacity:0; animation:fadeUp 0.8s 0.6s forwards; }
-  .hero-cta { display:inline-flex; align-items:center; gap:0.6rem; padding:0.9rem 2.2rem; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; text-decoration:none; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.3s; box-shadow:0 4px 20px rgba(201,146,10,0.25); opacity:0; animation:fadeUp 0.8s 0.8s forwards; }
-  .hero-cta:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(201,146,10,0.35); }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.3rem 5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(19,17,14,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;color:var(--gold-bright);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+/* BRIGHTER nav links */
+.nav-links a{color:var(--white2);text-decoration:none;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.25s;font-weight:500;position:relative;padding-bottom:3px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold-bright);transition:width 0.3s ease;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-bright);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
 
-  .about { padding:8rem 4rem; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
-  .section-label { font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
-  .about-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.8rem); line-height:1.2; margin-bottom:1.5rem; }
-  .about-text { color:var(--muted); line-height:1.9; font-size:0.95rem; margin-bottom:1rem; }
-  .about-stats { display:flex; gap:3rem; margin-top:2rem; margin-bottom:2.5rem; }
-  .stat-num { font-family:'Playfair Display',serif; font-size:2.5rem; background:linear-gradient(135deg,var(--accent),var(--accent-shine)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; }
-  .stat-label { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
-  .about-links { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
-  .about-link { padding:0.6rem 1.4rem; border:1px solid var(--accent); color:var(--accent); text-decoration:none; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.3s; }
-  .about-link:hover { background:var(--accent); color:#fff; }
-  .skills-title { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:1.5rem; }
-  .about-skills { display:flex; flex-wrap:wrap; gap:0.8rem; }
-  .skill-tag { padding:0.5rem 1.2rem; border:1px solid var(--border); font-size:0.8rem; color:var(--muted); transition:all 0.3s; background:var(--card); }
-  .skill-tag:hover { border-color:var(--accent); color:var(--accent); }
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 0.8fr;padding-top:72px;}
+.hero-left{padding:5rem 5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);}
+.hero-right{padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;gap:2rem;}
+.hero-eyebrow{font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp 0.8s 0.15s forwards;}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold-bright);}
+.hero-name{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.05;margin-bottom:0.5rem;opacity:0;animation:fadeUp 0.8s 0.3s forwards;}
+.hero-name em{font-style:italic;font-weight:300;color:var(--gold-bright);}
+.hero-role{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.15rem;color:var(--white2);margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s 0.4s forwards;}
+.hero-desc{font-size:0.97rem;color:var(--muted);line-height:1.9;margin-bottom:2.5rem;max-width:440px;opacity:0;animation:fadeUp 0.8s 0.5s forwards;}
+.hero-desc strong{color:var(--white2);font-weight:500;}
+.hero-cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.6s forwards;}
+.btn-gold{padding:0.85rem 2rem;background:var(--gold-bright);color:#0e0b07;font-size:0.82rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,134,10,0.4);}
+.btn-ghost{padding:0.85rem 2rem;border:1px solid var(--border2);color:var(--white2);font-size:0.82rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--gold-bright);color:var(--gold-bright);}
+.hero-open{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;color:#4ade80;opacity:0;animation:fadeUp 0.8s 0.7s forwards;}
+.hero-open::before{content:'';width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse-green 2s infinite;flex-shrink:0;}
+@keyframes pulse-green{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.hero-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;opacity:0;animation:fadeUp 0.8s 0.5s forwards;}
+.hero-stat{background:var(--card);border:1px solid var(--border);padding:1.4rem;text-align:center;transition:border-color 0.3s,transform 0.3s;}
+.hero-stat:hover{border-color:rgba(200,134,10,0.4);transform:translateY(-3px);}
+.hero-stat-num{font-family:'Fraunces',serif;font-weight:900;font-size:2.2rem;color:var(--gold-bright);line-height:1;display:block;margin-bottom:0.3rem;}
+.hero-stat-label{font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.hero-positioning{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);padding:1.4rem 1.6rem;opacity:0;animation:fadeUp 0.8s 0.65s forwards;}
+.hero-positioning p{font-family:'Fraunces',serif;font-style:italic;font-size:0.97rem;color:var(--white2);line-height:1.75;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
-  .works { padding:6rem 4rem; max-width:1300px; margin:0 auto; }
-  .works-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:4rem; }
-  .works-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); }
-  .works-count { font-size:0.8rem; color:var(--muted); letter-spacing:0.1em; }
-  .works-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:1.5rem; }
-  .work-card { background:var(--card); border:1px solid var(--border); overflow:hidden; transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s; }
-  .work-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 12px 40px rgba(201,146,10,0.12); }
-  .work-card-top { padding:2rem 2rem 1rem; display:flex; justify-content:space-between; align-items:flex-start; }
-  .work-number { font-family:'Playfair Display',serif; font-size:0.85rem; color:var(--accent); opacity:0.7; }
-  .work-category { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); padding:0.3rem 0.7rem; background:var(--surface); }
-  .work-title { font-family:'Playfair Display',serif; font-size:1.25rem; padding:0 2rem; line-height:1.3; margin-bottom:0.4rem; }
-  .work-tagline { font-size:0.8rem; color:var(--accent); font-style:italic; padding:0 2rem; margin-bottom:1.5rem; }
-  .work-card-bottom { padding:1rem 2rem 1.5rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:1rem; }
-  .btn-concept { font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); background:none; border:1px solid var(--accent); padding:0.5rem 1rem; cursor:pointer; transition:all 0.3s; font-family:'DM Sans',sans-serif; }
-  .btn-concept:hover { background:var(--accent); color:#fff; }
-  .btn-behance { font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#fff; background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none; padding:0.5rem 1rem; cursor:pointer; text-decoration:none; transition:all 0.3s; display:inline-block; box-shadow:0 2px 10px rgba(201,146,10,0.2); }
-  .btn-behance:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(201,146,10,0.35); }
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
 
-  .modal-overlay { position:fixed; inset:0; background:rgba(30,20,5,0.88); z-index:999; display:none; align-items:center; justify-content:center; padding:2rem; backdrop-filter:blur(6px); }
-  .modal-overlay.active { display:flex; }
-  .modal { background:var(--card); border:1px solid var(--accent); max-width:720px; width:100%; max-height:85vh; overflow-y:auto; position:relative; animation:modalIn 0.3s ease; box-shadow:0 20px 60px rgba(201,146,10,0.15); }
-  @keyframes modalIn { from{opacity:0;transform:scale(0.95);} to{opacity:1;transform:scale(1);} }
-  .modal-header { padding:2.5rem 2.5rem 1.5rem; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--card); z-index:2; }
-  .modal-category { font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem; }
-  .modal-title { font-family:'Playfair Display',serif; font-size:1.8rem; line-height:1.2; margin-bottom:0.5rem; }
-  .modal-tagline { font-style:italic; color:var(--accent); font-size:0.9rem; }
-  .modal-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:1px solid var(--border); color:var(--muted); width:36px; height:36px; cursor:pointer; font-size:1rem; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
-  .modal-close:hover { border-color:var(--accent); color:var(--accent); }
-  .modal-body { padding:2rem 2.5rem; }
-  .modal-body p { color:var(--muted); line-height:1.9; font-size:0.95rem; margin-bottom:1.2rem; }
-  .modal-body p:last-child { margin-bottom:0; }
+.section-label{font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:1.2rem;display:flex;align-items:center;gap:1rem;}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold-bright);}
+.section-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.9rem,3.5vw,2.8rem);line-height:1.1;margin-bottom:0.5rem;}
+.section-title em{font-style:italic;font-weight:300;color:var(--gold-bright);}
 
-  .contact { padding:8rem 4rem; text-align:center; background:linear-gradient(to bottom,transparent,rgba(245,200,66,0.06)); }
-  .contact-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,5rem); line-height:1.1; margin-bottom:1.5rem; }
-  .contact-title em { font-style:italic; background:linear-gradient(135deg,var(--accent),var(--accent-shine)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .contact-text { color:var(--muted); font-size:1rem; margin-bottom:1rem; line-height:1.7; }
-  .contact-email { display:inline-block; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--accent); letter-spacing:0.05em; margin-bottom:3rem; padding:0.8rem 2rem; border:1px solid var(--border); background:var(--card); user-select:all; }
-  .contact-links { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; }
-  .contact-link { padding:0.9rem 2rem; border:1px solid var(--border); color:var(--muted); text-decoration:none; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.3s; background:var(--card); }
-  .contact-link:hover { border-color:var(--accent); color:var(--accent); }
+/* ABOUT */
+#about{padding:7rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;max-width:1400px;margin:0 auto;}
+.about-text{color:var(--white2);line-height:1.95;font-size:0.97rem;margin-bottom:1rem;}
+.about-text strong{color:var(--white);font-weight:600;}
+.spec-note{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(200,134,10,0.08);border:1px solid rgba(200,134,10,0.25);padding:0.5rem 1rem;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:2rem;}
+.about-link-row{display:flex;gap:1rem;margin-top:2rem;}
+.think-card{background:var(--card);border:1px solid var(--border);}
+.think-card-header{padding:1.4rem 2rem;border-bottom:1px solid var(--border);}
+.think-card-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:var(--white);}
+.think-step{padding:1.15rem 2rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:2rem 1fr;gap:1rem;transition:background 0.25s,padding-left 0.3s;}
+.think-step:last-child{border-bottom:none;}
+.think-step:hover{background:rgba(200,134,10,0.05);padding-left:2.5rem;}
+.step-num{font-family:'Fraunces',serif;font-weight:700;font-size:0.85rem;color:var(--gold-bright);margin-top:2px;}
+.step-text h4{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.2rem;}
+.step-text p{font-size:0.83rem;color:var(--muted);line-height:1.65;}
 
-  footer { padding:2rem 4rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--surface); }
-  footer p { font-size:0.8rem; color:var(--muted); }
-  .divider { width:100%; height:1px; background:linear-gradient(to right,transparent,var(--border),transparent); }
-  .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.8s,transform 0.8s; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+/* ══════════════════════════════
+   SKILLS — POP UP ON HOVER
+══════════════════════════════ */
+#skills{padding:5rem 5rem;background:var(--surface);}
+.skills-inner{max-width:1400px;margin:0 auto;}
+.skills-header{margin-bottom:3rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
 
-  @media (max-width:768px) {
-    nav { padding:1.2rem 1.5rem; }
-    .nav-links { display:none; }
-    .about { grid-template-columns:1fr; padding:4rem 1.5rem; gap:3rem; }
-    .works { padding:4rem 1.5rem; }
-    .works-grid { grid-template-columns:1fr; }
-    .contact { padding:5rem 1.5rem; }
-    footer { flex-direction:column; gap:1rem; text-align:center; padding:2rem 1.5rem; }
-    .modal-header,.modal-body { padding-left:1.5rem; padding-right:1.5rem; }
-  }
+.skill-group{border:1px solid var(--border);position:relative;overflow:hidden;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s, border-color 0.3s;}
+.skill-group:hover{transform:translateY(-12px) scale(1.03);z-index:5;}
+
+/* colored top bar per group */
+.skill-group-bar{position:absolute;top:0;left:0;right:0;height:3px;transition:height 0.3s;}
+.skill-group:hover .skill-group-bar{height:5px;}
+/* teal */
+.skill-group:nth-child(1){background:rgba(0,196,176,0.06);}
+.skill-group:nth-child(1) .skill-group-bar{background:linear-gradient(90deg,#00c4b0,#00e8d0);}
+.skill-group:nth-child(1):hover{border-color:var(--teal);box-shadow:0 28px 60px rgba(0,196,176,0.22),0 0 0 1px rgba(0,196,176,0.12);}
+/* coral */
+.skill-group:nth-child(2){background:rgba(255,107,74,0.06);}
+.skill-group:nth-child(2) .skill-group-bar{background:linear-gradient(90deg,#ff6b4a,#ff9a7a);}
+.skill-group:nth-child(2):hover{border-color:var(--coral);box-shadow:0 28px 60px rgba(255,107,74,0.22),0 0 0 1px rgba(255,107,74,0.12);}
+/* violet */
+.skill-group:nth-child(3){background:rgba(155,123,224,0.06);}
+.skill-group:nth-child(3) .skill-group-bar{background:linear-gradient(90deg,#9b7be0,#c4a8ff);}
+.skill-group:nth-child(3):hover{border-color:var(--violet);box-shadow:0 28px 60px rgba(155,123,224,0.22),0 0 0 1px rgba(155,123,224,0.12);}
+/* slate */
+.skill-group:nth-child(4){background:rgba(91,155,213,0.06);}
+.skill-group:nth-child(4) .skill-group-bar{background:linear-gradient(90deg,#5b9bd5,#8ec4f0);}
+.skill-group:nth-child(4):hover{border-color:var(--slate);box-shadow:0 28px 60px rgba(91,155,213,0.22),0 0 0 1px rgba(91,155,213,0.12);}
+
+.skill-group-inner{padding:1.8rem;}
+.skill-group-title{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.3rem;padding-bottom:0.9rem;border-bottom:1px solid var(--border);font-weight:600;display:flex;justify-content:space-between;align-items:center;}
+.skill-group:nth-child(1) .skill-group-title{color:var(--teal);}
+.skill-group:nth-child(2) .skill-group-title{color:var(--coral);}
+.skill-group:nth-child(3) .skill-group-title{color:var(--violet);}
+.skill-group:nth-child(4) .skill-group-title{color:var(--slate);}
+.skill-arrow{opacity:0;transform:translateX(-5px);transition:opacity 0.25s,transform 0.25s;}
+.skill-group:hover .skill-arrow{opacity:1;transform:translateX(0);}
+
+.skill-list{list-style:none;display:flex;flex-direction:column;}
+.skill-list li{font-size:0.86rem;color:var(--white2);padding:0.42rem 0 0.42rem 1rem;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s,padding-left 0.25s,background 0.2s;}
+.skill-list li:last-child{border-bottom:none;}
+.skill-list li::before{content:'–';position:absolute;left:0;color:var(--faint);transition:color 0.2s;}
+.skill-list li:hover{color:var(--white);padding-left:1.4rem;background:rgba(255,255,255,0.02);}
+.skill-group:nth-child(1) .skill-list li:hover::before{color:var(--teal);}
+.skill-group:nth-child(2) .skill-list li:hover::before{color:var(--coral);}
+.skill-group:nth-child(3) .skill-list li:hover::before{color:var(--violet);}
+.skill-group:nth-child(4) .skill-list li:hover::before{color:var(--slate);}
+
+/* ══════════════════════════════
+   WORKS — SPOTLIGHT GLOW CARDS
+══════════════════════════════ */
+#works{padding:6rem 5rem;max-width:1400px;margin:0 auto;}
+.works-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;}
+.works-subtitle{font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--faint);}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+
+.work-card{background:var(--card);border:1px solid var(--border);overflow:hidden;position:relative;
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.35s;}
+.work-card:hover{transform:translateY(-8px);border-color:rgba(200,134,10,0.55);box-shadow:0 28px 65px rgba(200,134,10,0.14);}
+/* cursor glow follows mouse */
+.work-spotlight{position:absolute;inset:0;background:radial-gradient(circle 200px at var(--sx,50%) var(--sy,50%),rgba(200,134,10,0.1),transparent 70%);opacity:0;transition:opacity 0.3s;pointer-events:none;}
+.work-card:hover .work-spotlight{opacity:1;}
+.work-card-bar{height:3px;background:linear-gradient(to right,var(--gold),var(--gold-bright),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);}
+.work-card:hover .work-card-bar{transform:scaleX(1);}
+.card-inner{padding:1.8rem;position:relative;z-index:1;}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem;}
+.card-num{font-family:'Fraunces',serif;font-size:0.8rem;color:var(--faint);font-weight:600;}
+.card-badges{display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;}
+.card-cat{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-bright);border:1px solid rgba(200,134,10,0.28);padding:0.2rem 0.55rem;background:rgba(200,134,10,0.05);}
+.card-spec{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:0.15rem 0.5rem;}
+.card-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;line-height:1.25;margin-bottom:0.3rem;color:var(--white);}
+.card-tagline{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:0.9rem;color:var(--gold-bright);margin-bottom:1.2rem;}
+.card-why{font-size:0.82rem;color:var(--white2);line-height:1.7;border-left:2px solid var(--gold);padding-left:0.8rem;margin-bottom:1.4rem;}
+.card-why strong{display:block;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem;}
+.card-actions{display:flex;gap:0.8rem;padding-top:1.2rem;border-top:1px solid var(--border);}
+.btn-sm-outline{font-size:0.71rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white2);background:none;border:1px solid var(--border);padding:0.5rem 0.9rem;cursor:pointer;transition:all 0.25s;font-family:'DM Sans',sans-serif;}
+.btn-sm-outline:hover{border-color:var(--gold-bright);color:var(--gold-bright);background:rgba(200,134,10,0.05);}
+.btn-sm-gold{font-size:0.71rem;letter-spacing:1.5px;text-transform:uppercase;color:#0e0b07;background:var(--gold-bright);border:none;padding:0.5rem 0.9rem;cursor:pointer;transition:all 0.25s;font-family:'DM Sans',sans-serif;font-weight:600;text-decoration:none;display:inline-block;}
+.btn-sm-gold:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:800;display:none;align-items:flex-start;justify-content:center;padding:4rem 1.5rem;overflow-y:auto;backdrop-filter:blur(10px);}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--surface);border:1px solid var(--border2);max-width:700px;width:100%;margin:auto;position:relative;animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
+@keyframes modalIn{from{opacity:0;transform:translateY(28px) scale(0.97);}to{opacity:1;transform:none;}}
+.modal-top-bar{height:3px;background:linear-gradient(to right,var(--gold),var(--gold-bright));}
+.modal-head{padding:2.2rem 2.5rem 1.8rem;border-bottom:1px solid var(--border);}
+.modal-cat{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:0.4rem;}
+.modal-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;line-height:1.15;color:var(--white);margin-bottom:0.3rem;}
+.modal-tagline{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--gold-bright);font-size:0.92rem;}
+.modal-x{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;font-size:0.85rem;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.modal-x:hover{border-color:var(--gold-bright);color:var(--gold-bright);}
+.modal-body{padding:2rem 2.5rem;}
+.modal-body p{color:var(--white2);line-height:1.95;font-size:0.94rem;margin-bottom:1.1rem;}
+.modal-why-box{background:rgba(200,134,10,0.06);border:1px solid rgba(200,134,10,0.2);padding:1.2rem 1.5rem;margin-top:1.5rem;}
+.modal-why-box strong{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-bright);display:block;margin-bottom:0.5rem;}
+.modal-why-box p{color:var(--white);font-size:0.88rem;margin:0;line-height:1.75;}
+
+/* CONTACT */
+#contact{padding:8rem 5rem;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:7rem;align-items:start;}
+.contact-title{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;margin-bottom:1.5rem;}
+.contact-title em{font-style:italic;font-weight:300;color:var(--gold-bright);}
+.contact-desc{color:var(--muted);font-size:0.96rem;line-height:1.9;margin-bottom:2rem;}
+.contact-email-card{background:var(--card);border:1px solid var(--border);padding:1.3rem 1.8rem;display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;transition:border-color 0.3s,transform 0.3s;text-decoration:none;}
+.contact-email-card:hover{border-color:rgba(200,134,10,0.5);transform:translateX(5px);}
+.email-icon-wrap{width:38px;height:38px;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.25);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.email-label2{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--faint);margin-bottom:0.2rem;}
+.email-val{font-family:'Fraunces',serif;font-size:1rem;color:var(--white);font-weight:600;}
+.clinks{display:flex;flex-direction:column;}
+.clink{padding:1.2rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;text-decoration:none;transition:padding-left 0.25s,border-color 0.25s;}
+.clink:hover{border-color:var(--gold);padding-left:0.5rem;}
+.clink-name{font-size:0.82rem;font-weight:500;color:var(--white2);transition:color 0.25s;}
+.clink:hover .clink-name{color:var(--gold-bright);}
+.clink-arr{font-family:'Fraunces',serif;font-style:italic;font-size:0.85rem;color:var(--faint);transition:color 0.25s;}
+.clink:hover .clink-arr{color:var(--gold-bright);}
+.avail-badge{margin-top:2rem;padding:1.2rem 1.5rem;border:1px solid rgba(74,222,128,0.2);background:rgba(74,222,128,0.04);}
+.avail-dot{display:inline-block;width:7px;height:7px;background:#4ade80;border-radius:50%;margin-right:0.6rem;animation:pulse-green 2s infinite;}
+.avail-txt{font-size:0.8rem;color:var(--white2);}
+.avail-sub{font-size:0.74rem;color:var(--muted);margin-top:0.4rem;line-height:1.5;}
+footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--surface);}
+footer p{font-size:0.77rem;color:var(--faint);}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.75s,transform 0.75s;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-1{transition-delay:0.1s;}
+.reveal-2{transition-delay:0.2s;}
+.reveal-3{transition-delay:0.3s;}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  #about,#contact{grid-template-columns:1fr;gap:3.5rem;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .works-grid{grid-template-columns:repeat(2,1fr);}
+  nav,#about,#skills .skills-inner,#works,#contact,footer{padding-left:2rem;padding-right:2rem;}
+  .hero-left{padding:4rem 2rem;}
+  #skills{padding:4rem 2rem;}
+}
+@media(max-width:650px){
+  .works-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
 </style>
 </head>
 <body>
 
+<div id="scroll-bar"></div>
+
 <nav>
-  <div class="nav-logo">MM</div>
+  <div class="nav-logo">Madhavi Muttukuru</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#works">Works</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#works">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section class="hero">
-  <div class="hero-ring"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-content">
-    <p class="hero-tag">Content Writer & Brand Storyteller</p>
-    <h1 class="hero-name">Madhavi<br/><span>Muttukuru</span></h1>
-    <p class="hero-tagline">I find stories in everyday moments — and turn them into concepts that make people feel something.</p>
-    <a href="#works" class="hero-cta">View My Work ↓</a>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Brand Copywriter &amp; Ad Concept Developer</div>
+    <h1 class="hero-name">Madhavi<br/><em>Muttukuru</em></h1>
+    <p class="hero-role">Ideas rooted in Indian life. Written for modern brands.</p>
+    <p class="hero-desc">I find the one <strong>human truth</strong> at the heart of a brand — then give it the words it deserves. Every concept I build starts from real people, real moments, real emotion.</p>
+    <div class="hero-cta-row">
+      <a href="#works" class="btn-gold">View My Work</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-open">Open to internships &amp; junior copywriting roles</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-row">
+      <div class="hero-stat"><span class="hero-stat-num">7</span><span class="hero-stat-label">Brand Concepts</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">∞</span><span class="hero-stat-label">Stories to Tell</span></div>
+    </div>
+    <div class="hero-positioning"><p>"I write ads that feel like real life — not like advertising."</p></div>
   </div>
 </section>
 
-<section class="about" id="about">
+<div class="divider"></div>
+
+<section id="about">
   <div class="reveal">
     <p class="section-label">About Me</p>
-    <h2 class="about-title">A storyteller who thinks in narratives</h2>
-    <p class="about-text">I am Madhavi Muttukuru — a content writer, brand storyteller, and script writer from Chittoor, Andhra Pradesh. I believe the best ideas come from watching real life closely — a farmer in a field, a girl navigating a new city, a husband choosing the right words after silence.</p>
-    <p class="about-text">Every brand has a story waiting to be told. I find it, shape it, and give it the words it deserves.</p>
-    <div class="about-stats">
-      <div><span class="stat-num">7</span><span class="stat-label">Brand Concepts</span></div>
-      <div><span class="stat-num">∞</span><span class="stat-label">Stories to Tell</span></div>
-    </div>
-    <div class="about-links">
-      <a href="https://www.behance.net/muttukurumadhavi" target="_blank" class="about-link">Behance Portfolio →</a>
-      <a href="https://drive.google.com/file/d/1tzQhcxhYai81-nR5aAa2BK9GSnj-_fQ9/view" target="_blank" class="about-link">Articles →</a>
-    </div>
+    <h2 class="section-title">A storyteller who<br/><em>thinks in campaigns</em></h2>
+    <div class="spec-note">★ All projects are spec / conceptual work</div>
+    <p class="about-text">I am Madhavi Muttukuru — brand copywriter and ad concept developer from Chittoor, Andhra Pradesh. My ideas don't start with briefs. They start with <strong>watching real people live, love, and struggle.</strong></p>
+    <p class="about-text">From a Kamadhenu reborn as food delivery, to a map app that sounds like your father — every concept is built on a single honest observation about how people feel.</p>
+    <p class="about-text">Seven concepts. Seven insights. Each one built to make <strong>people feel something real.</strong></p>
+    <div class="about-link-row"><a href="https://www.behance.net/muttukurumadhavi" target="_blank" class="btn-gold">View Behance Portfolio →</a></div>
   </div>
-  <div class="reveal">
-    <p class="section-label">Skills</p>
-    <p class="skills-title">What I bring to the table</p>
-    <div class="about-skills">
-      <span class="skill-tag">CopyWriting</span>
-      <span class="skill-tag">Brand Storytelling</span>
-      <span class="skill-tag">Script Writing</span>
-      <span class="skill-tag">UX Writing</span>
-      <span class="skill-tag">Content Strategy</span>
-      <span class="skill-tag">Ad Concept Development</span>
-      <span class="skill-tag">Social Media Content</span>
-      <span class="skill-tag">Research & Insights</span>
-      <span class="skill-tag">Creative Copywriting</span>
-      <span class="skill-tag">SEO Optimization</span>
+  <div class="reveal reveal-2">
+    <p class="section-label">How I Think</p>
+    <div class="think-card">
+      <div class="think-card-header"><div class="think-card-title">My Creative Process</div></div>
+      <div class="think-step"><span class="step-num">01</span><div class="step-text"><h4>Observe Real Life</h4><p>I watch how people actually behave — how they argue, love, struggle, and celebrate. That's where every brief begins.</p></div></div>
+      <div class="think-step"><span class="step-num">02</span><div class="step-text"><h4>Find the Brand Truth</h4><p>Not the tagline — the real human thing underneath it. What does this brand actually stand for at its core?</p></div></div>
+      <div class="think-step"><span class="step-num">03</span><div class="step-text"><h4>Connect the Two</h4><p>When human behaviour meets the brand truth — that intersection is where the idea lives.</p></div></div>
+      <div class="think-step"><span class="step-num">04</span><div class="step-text"><h4>Write Until It Feels True</h4><p>Draft. Kill darlings. Rewrite. Keep only what earns its place on the page.</p></div></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<section class="works" id="works">
+<section id="skills">
+  <div class="skills-inner">
+    <div class="skills-header reveal">
+      <p class="section-label">Capabilities</p>
+      <h2 class="section-title">Skills &amp; <em>Strengths</em></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-bar"></div>
+        <div class="skill-group-inner">
+          <div class="skill-group-title">Core Copy <span class="skill-arrow">↗</span></div>
+          <ul class="skill-list">
+            <li>Brand Storytelling</li><li>Ad Concepting</li><li>Headline Writing</li>
+            <li>Tagline Development</li><li>Campaign Ideation</li><li>Creative Copywriting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-1">
+        <div class="skill-group-bar"></div>
+        <div class="skill-group-inner">
+          <div class="skill-group-title">Scripting <span class="skill-arrow">↗</span></div>
+          <ul class="skill-list">
+            <li>TVC Script Writing</li><li>Short-Form Scripts</li><li>Reel &amp; Shorts Hooks</li>
+            <li>3-Second Openers</li><li>Voiceover Copy</li><li>Narrative Scripting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-2">
+        <div class="skill-group-bar"></div>
+        <div class="skill-group-inner">
+          <div class="skill-group-title">Strategy <span class="skill-arrow">↗</span></div>
+          <ul class="skill-list">
+            <li>Consumer Insight Mining</li><li>Brand Voice Development</li><li>Brief Interpretation</li>
+            <li>Creative Problem Solving</li><li>Audience Analysis</li><li>Emotional Targeting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-3">
+        <div class="skill-group-bar"></div>
+        <div class="skill-group-inner">
+          <div class="skill-group-title">Digital &amp; Craft <span class="skill-arrow">↗</span></div>
+          <ul class="skill-list">
+            <li>Social Media Copy</li><li>UX Writing</li><li>Content Adaptation</li>
+            <li>SEO Copywriting</li><li>Feedback Iteration</li><li>Fast Turnaround</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="works">
   <div class="works-header reveal">
     <div>
       <p class="section-label">Creative Work</p>
-      <h2 class="works-title">Brand Concepts</h2>
+      <h2 class="section-title">Brand <em>Concepts</em></h2>
     </div>
-    <span class="works-count">07 Projects</span>
+    <span class="works-subtitle">07 Spec Projects</span>
   </div>
   <div class="works-grid" id="worksGrid"></div>
 </section>
 
 <div class="divider"></div>
 
-<section class="contact" id="contact">
+<section id="contact">
   <div class="reveal">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="contact-title">Let's create something<br/><em>unforgettable</em></h2>
-    <p class="contact-text">Open to content writing, brand storytelling, script writing and creative collaborations.</p>
-    <div class="contact-email">madhavimuttukuru0@gmail.com</div>
-    <div class="contact-links">
-      <a href="https://www.behance.net/muttukurumadhavi" target="_blank" class="contact-link">Behance</a>
-      <a href="https://drive.google.com/file/d/1tzQhcxhYai81-nR5aAa2BK9GSnj-_fQ9/view" target="_blank" class="contact-link">Articles</a>
+    <p class="section-label">Let's Work Together</p>
+    <h2 class="contact-title">Got a brief?<br/><em>Let's make it unforgettable.</em></h2>
+    <p class="contact-desc">Open to copywriting internships, brand storytelling, TVC scripting, and creative collaborations. I respond within 24 hours.</p>
+    <a href="mailto:madhavimuttukuru0@gmail.com" class="contact-email-card">
+      <div class="email-icon-wrap">✉</div>
+      <div><div class="email-label2">Click to Email</div><div class="email-val">madhavimuttukuru0@gmail.com</div></div>
+    </a>
+  </div>
+  <div class="reveal reveal-2">
+    <p class="section-label">Find Me On</p>
+    <div class="clinks">
+      <a href="https://www.behance.net/muttukurumadhavi" target="_blank" class="clink">
+        <span class="clink-name">Behance — Full Portfolio</span><span class="clink-arr">View work →</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="clink">
+        <span class="clink-name">LinkedIn — Add your profile link</span><span class="clink-arr">Connect →</span>
+      </a>
+    </div>
+    <div class="avail-badge">
+      <div><span class="avail-dot"></span><span class="avail-txt">Currently available</span></div>
+      <p class="avail-sub">Open to internships &amp; full-time copywriting roles. Chittoor, AP — open to relocation &amp; remote.</p>
     </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 Madhavi Muttukuru. All rights reserved.</p>
-  <p>Chittoor, Andhra Pradesh</p>
+  <p>Brand Copywriter · Chittoor, Andhra Pradesh</p>
 </footer>
 
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <p class="modal-category" id="modalCategory"></p>
+  <div class="modal-box">
+    <div class="modal-top-bar"></div>
+    <div class="modal-head">
+      <p class="modal-cat" id="modalCat"></p>
       <h2 class="modal-title" id="modalTitle"></h2>
       <p class="modal-tagline" id="modalTagline"></p>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-x" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
 <script>
-const projects = [
-  { number:"01", title:"Modern Kamadhenu", tagline:"For Your Hunger", category:"Food & Delivery", link:"https://www.behance.net/gallery/244263695/MODERN-KAMADHENU-TRUSTLET", concept:["In Indian mythology, Kamadhenu was a divine cow that could grant any wish — a source of endless abundance beyond the limits of the ordinary world. Two friends are talking, and one brings up this beautiful idea: what if Kamadhenu existed today?","The other friend smiles and says maybe it does — not for free, but it gives you your dream food in seconds. Just as the thought lands, a phone buzzes with a delivery notification. Food has arrived.","The first friend calls it magic. The second friend corrects them. Not magic. Just great food, on time. In this generation, nothing comes free. But great food arriving at your doorstep? That comes close to a wish being granted.","Brand Concept: Rebel Foods — Like Kamadhenu, for your cravings."] },
-  { number:"02", title:"Food That Creates a Concert in Your Mouth", tagline:"Food That Makes You Dance", category:"Food & Experience", link:"https://www.behance.net/gallery/244392107/Food-That-Creates-a-Concert-in-Your-Mouth-(Ad-Concept)", concept:["Geetha is a confident city girl. Latha is visiting the city for the first time — simple, shy, and seeing everything with fresh eyes. They are hungry, so Geetha takes her somewhere special. Latha admits she loves to dance but is too shy to do it in public. Geetha just smiles and says nothing.","They ride through the city and stop in front of a Rebel Foods outlet. Inside, people are eating with their eyes closed, swaying gently, smiling to themselves. Latha is confused — why is everyone almost dancing?","Geetha orders Behrouz Biryani. The food arrives, steaming and rich. Latha takes one bite, closes her eyes, and something happens. A smile spreads across her face. Her shoulders start to move. Without realizing it, she is dancing — right there in her chair.","When she opens her eyes and looks at Geetha, they both burst out laughing. Latha looks at the camera: who said you need legs to dance? My whole concert is playing in my mouth."] },
-  { number:"03", title:"CARE-D", tagline:"Not Just Directions. It's Care.", category:"Navigation & Tech", link:"https://www.behance.net/gallery/244562403/CARE-D-Not-Just-Directions-Its-Care", concept:["A girl is lost in a forest. Battery low. No signal. Fear is creeping in. A stranger appears and calmly tells her not to worry — he will show her the way. He walks with her until she reaches safety. Then quietly, he fades — and becomes the map app on her phone.","She arrives in a new city. The roads are confusing. Her brother calls and guides her step by step, like he is walking right beside her. Until his voice becomes the navigation voice on her screen.","She is searching for a place in an unfamiliar neighbourhood, tired and almost ready to give up. Her father calls. Slowly he says turn right, then left. She finds her way. His voice becomes the map voice.","In the final moment, she sits in her room and opens the app. A soft voiceover says: sometimes it is a stranger, sometimes a brother, sometimes a father. But it is always there for you. The map app was never just directions. It was care, every single time."] },
-  { number:"04", title:"GRAZIA", tagline:"Grace Isn't Stitched. It's Styled.", category:"Fashion & Confidence", link:"https://www.behance.net/gallery/244629479/GRAZIA", concept:["A girl from a village scrolls through Instagram and sees her town friend looking effortlessly stylish. She smiles, but there is quiet sadness in it. She stands in front of her small mirror and thinks — at least once, she wants to look like that.","She goes to the local tailoring shop. But the crowd, the waiting, the noise — it is too much. She leaves without anything done. Walking back, she wonders — does she really need tailoring to feel good?","Her friend says come, I will take you somewhere. They find Grazia. She walks in nervously and starts trying things on. With each mirror moment, something shifts. Confidence rises. Doubts disappear.","She steps out and walks differently. People notice. Friends smile. Someone says she looks amazing. She just smiles. No tailoring. No waiting. Just style — and the confidence that comes when you wear what is truly made for you."] },
-  { number:"05", title:"AUREVA", tagline:"Some Spending Is Just Love in Disguise", category:"Jewellery & Emotion", link:"https://www.behance.net/gallery/244752215/AUREVA-Some-spending-is-just-love-in-disguise", concept:["A husband and wife have a small disagreement. Words fall short and silence fills the space between them. Days pass — two people sharing the same home but moving around each other without speaking.","Then the calendar reminds him — her birthday is close. He stands in front of a jewelry display and picks up a simple, elegant gold piece. He holds the box like it carries something heavier than metal.","On her birthday morning, he sits beside her quietly. After a long silence, he asks: do you know when flowers look the most beautiful? He continues: even the most beautiful flower becomes divine when placed at God's feet. Gold is precious, but the moment you wear it, it becomes priceless.","He opens the box. Her eyes fill with tears. She smiles for the first time in days and hugs him. Because sometimes, the most valuable thing a person can do is spend on someone they love."] },
-  { number:"06", title:"SOMNĒ", tagline:"Good Sleep Is Not a Luxury. It's a Necessity.", category:"Lifestyle & Wellness", link:"https://www.canva.com/design/DAHCeGlmK3s/mNo3gwfAWL2JjrN7ElcLxw/edit", concept:["Ram and Raj are colleagues with the same workload and the same stress. But when they meet the next evening, Raj looks fresh and energetic while Ram looks exhausted — dark circles, yawning, dragging himself through the day.","Ram finally asks: same work, same pressure — how are you always so fresh? Raj smiles and says it is simple — good sleep. Ram laughs and says he also has a bed. Raj stands up: come, I will show you.","They walk into Raj's room. Calm, peaceful, soft lighting. Raj tells Ram to just lie down. As Raj begins explaining how the mattress supports the back and relaxes the muscles, Ram's eyes slowly close. In two minutes, he is completely asleep.","Raj stops mid-sentence, looks at his sleeping friend, and smiles at the camera: it is not just a bed. It is a gateway to heaven. Good sleep is not something extra — it is the foundation of everything."] },
-  { number:"07", title:"PayPal", tagline:"Where Happiness Blossoms, Right on Time", category:"Fintech & Emotion", link:"https://www.behance.net/gallery/244888569/PAYPAL-Where-happiness-blossoms-right-on-time", concept:["A farmer couple is working in their neighbour's field during harvest season — helping each other the way village communities always have. The father's phone rings. It is their son from his hostel. Today is the last day to pay his fees. Can they send the money?","The father looks around at the half-harvested field. He cannot leave now. He explains the situation to his neighbour. Both fall silent. Neither wants to disappoint the other.","Another farmer nearby walks over with a smile and says there is no need to go anywhere — you can send it from right here. He opens PayPal and explains step by step. The father hesitates, then tries it himself. One tap. Transfer complete.","Minutes later the phone rings. It is the son — the money arrived. The father laughs, still standing in the golden field. No son, I am still right here. That is technology. The mother smiles. The harvest continues. And somewhere between the crops and the phone screen, happiness blossomed — right on time."] }
+// ── SCROLL PROGRESS BAR ──
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  document.getElementById('scroll-bar').style.width=pct+'%';
+},{passive:true});
+
+// ── ACTIVE NAV — highlights as you scroll ──
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  ['about','skills','works','contact'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-160) cur=id;
+  });
+  navAs.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+},{passive:true});
+
+// ── WORK CARD CURSOR SPOTLIGHT ──
+document.addEventListener('mousemove',e=>{
+  document.querySelectorAll('.work-card').forEach(card=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--sx',((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--sy',((e.clientY-r.top)/r.height*100)+'%');
+  });
+},{passive:true});
+
+// ── PROJECTS DATA ──
+const projects=[
+  {num:"01",cat:"Food & Delivery",title:"Modern Kamadhenu",tagline:"For Your Hunger",
+   link:"https://www.behance.net/gallery/244263695/MODERN-KAMADHENU-TRUSTLET",
+   why:"Connects Indian mythology — Kamadhenu, the wish-granting cow — with modern food delivery. The insight: nothing comes free in this generation, but instant great food comes close to a wish granted.",
+   story:["Two friends talk about what would happen if Kamadhenu existed today. One smiles — maybe it does. Not for free, but it grants your food cravings in seconds. A phone buzzes. Delivery has arrived.","The first friend calls it magic. The second corrects them: not magic. Just great food, on time. Rebel Foods — like Kamadhenu, for your cravings."]},
+  {num:"02",cat:"Food & Experience",title:"Concert in Your Mouth",tagline:"Food That Makes You Dance",
+   link:"https://www.behance.net/gallery/244392107/Food-That-Creates-a-Concert-in-Your-Mouth-(Ad-Concept)",
+   why:"Great food doesn't need a stage — it creates one inside you. Using a shy character's inhibition as contrast makes the involuntary dance payoff emotionally unforgettable.",
+   story:["Geetha is a confident city girl. Latha is visiting for the first time — shy, seeing everything with fresh eyes. Latha admits she loves to dance but is too shy to do it in public. Geetha smiles and says nothing.","They stop at a Rebel Foods outlet. People inside eat with eyes closed, swaying gently. Latha takes one bite of Behrouz Biryani. Her shoulders start to move. Without realising it, she's dancing in her chair.","She looks at Geetha — they burst out laughing. Latha looks at camera: who said you need legs to dance? My whole concert is playing in my mouth."]},
+  {num:"03",cat:"Navigation & Tech",title:"CARE-D",tagline:"Not Just Directions. It's Care.",
+   link:"https://www.behance.net/gallery/244562403/CARE-D-Not-Just-Directions-Its-Care",
+   why:"Reframes a utility app as an emotional experience. Every person who ever guided you safely is now in your pocket — transforming the purely functional into the deeply personal.",
+   story:["A girl is lost in a forest. Battery low. No signal. A stranger walks her to safety — then fades and becomes the map app on her screen. In a new city, her brother guides her step by step. His voice becomes the navigation. Another day, her father guides her home. His voice becomes the map.","Voiceover: sometimes a stranger. Sometimes a brother. Sometimes a father. But always there for you. The map was never just directions. It was care, every single time."]},
+  {num:"04",cat:"Fashion & Confidence",title:"GRAZIA",tagline:"Grace Isn't Stitched. It's Styled.",
+   link:"https://www.behance.net/gallery/244629479/GRAZIA",
+   why:"The real barrier to feeling stylish isn't money — it's the friction of traditional tailoring. GRAZIA removes that friction. The transformation isn't the clothes — it's the walk out the door.",
+   story:["A girl from a village scrolls Instagram and sees her friend looking effortlessly stylish. She smiles — but there is quiet sadness. She visits the local tailor. The crowd, the noise, the waiting — too much. She leaves empty-handed.","Her friend says: come, I know somewhere. They find Grazia. She tries things on. With each mirror moment, something shifts. Confidence rises. She steps out walking differently. No tailoring. No waiting. Just the confidence that comes when you wear what was made for you."]},
+  {num:"05",cat:"Jewellery & Emotion",title:"AUREVA",tagline:"Some Spending Is Just Love in Disguise",
+   link:"https://www.behance.net/gallery/244752215/AUREVA-Some-spending-is-just-love-in-disguise",
+   why:"Buying jewellery for someone you love isn't spending — it's a language when words have run out. The campaign reframes a purchase as an act of emotional repair between two people.",
+   story:["A husband and wife have a small disagreement. Words fall short. Silence fills the space. Days pass — two people sharing the same home, not speaking. Then a calendar reminder: her birthday is close.","He stands in front of a jewellery display and picks up a simple gold piece. On her birthday he sits beside her: do you know when flowers look most beautiful? Even the most beautiful flower becomes divine when placed at God's feet. Gold is precious — but the moment you wear it, it becomes priceless. He opens the box. Her eyes fill with tears. She smiles for the first time in days."]},
+  {num:"06",cat:"Lifestyle & Wellness",title:"SOMNĒ",tagline:"Good Sleep Is Not a Luxury. It's a Foundation.",
+   link:"https://www.canva.com/design/DAHCeGlmK3s/mNo3gwfAWL2JjrN7ElcLxw/edit",
+   why:"Sleep is the one competitive advantage nobody talks about. A simple side-by-side comparison — same work, different outcomes — makes the product benefit immediately obvious.",
+   story:["Ram and Raj have identical workloads. Next evening, Raj looks sharp. Ram looks wrecked. Ram asks: same pressure — how are you always so fresh? Raj says: come, I'll show you.","They walk into Raj's room. Calm. Soft light. Raj tells Ram to lie down. As he begins explaining the mattress — Ram is already asleep. Two minutes flat. Raj stops mid-sentence, looks at his friend, smiles at camera: it's not just a bed. It's a gateway to everything."]},
+  {num:"07",cat:"Fintech & Emotion",title:"PayPal",tagline:"Happiness Blossoms, Right on Time",
+   link:"https://www.behance.net/gallery/244888569/PAYPAL-Where-happiness-blossoms-right-on-time",
+   why:"Technology's greatest gift isn't speed — it's presence. Being in two places at once. A farmer sending school fees without leaving the harvest field is the emotional truth of digital payments.",
+   story:["A farmer couple works in the field during harvest. The father's phone rings — it's their son. Today is the last day to pay hostel fees. The father looks at the unfinished harvest. He can't leave. A nearby farmer smiles: no need to go anywhere. He opens PayPal and guides him through. One tap. Transfer complete.","Minutes later the son calls — money arrived. The father laughs, still standing in the golden field: no son, I am still right here. That is technology. The mother smiles. The harvest continues. Happiness blossomed, right on time."]}
 ];
 
-const grid = document.getElementById('worksGrid');
-projects.forEach((p,i) => {
-  const card = document.createElement('div');
-  card.className = 'work-card reveal';
-  card.innerHTML = `
-    <div class="work-card-top">
-      <span class="work-number">${p.number}</span>
-      <span class="work-category">${p.category}</span>
-    </div>
-    <h3 class="work-title">${p.title}</h3>
-    <p class="work-tagline">${p.tagline}</p>
-    <div class="work-card-bottom">
-      <button class="btn-concept" onclick="openModal(${i})">Read Concept</button>
-      <a href="${p.link}" target="_blank" class="btn-behance">View on Behance →</a>
+// BUILD CARDS
+const grid=document.getElementById('worksGrid');
+projects.forEach((p,i)=>{
+  const delay=i%3===1?' reveal-1':i%3===2?' reveal-2':'';
+  const card=document.createElement('div');
+  card.className='work-card reveal'+delay;
+  card.innerHTML=`
+    <div class="work-spotlight"></div>
+    <div class="work-card-bar"></div>
+    <div class="card-inner">
+      <div class="card-top">
+        <span class="card-num">${p.num}</span>
+        <div class="card-badges"><span class="card-cat">${p.cat}</span><span class="card-spec">Spec Work</span></div>
+      </div>
+      <h3 class="card-title">${p.title}</h3>
+      <p class="card-tagline">${p.tagline}</p>
+      <div class="card-why"><strong>Why it works</strong>${p.why}</div>
+      <div class="card-actions">
+        <button class="btn-sm-outline" onclick="openModal(${i})">Read Concept</button>
+        <a href="${p.link}" target="_blank" class="btn-sm-gold">View on Behance →</a>
+      </div>
     </div>`;
   grid.appendChild(card);
 });
 
-function openModal(i) {
-  const p = projects[i];
-  document.getElementById('modalCategory').textContent = p.category;
-  document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalTagline').textContent = p.tagline;
-  document.getElementById('modalBody').innerHTML = p.concept.map(para => `<p>${para}</p>`).join('');
-  document.getElementById('modalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
+// MODAL
+function openModal(i){
+  const p=projects[i];
+  document.getElementById('modalCat').textContent=p.cat+' · Spec Work';
+  document.getElementById('modalTitle').textContent=p.title;
+  document.getElementById('modalTagline').textContent=p.tagline;
+  document.getElementById('modalBody').innerHTML=
+    p.story.map(s=>`<p>${s}</p>`).join('')+
+    `<div class="modal-why-box"><strong>Why it works</strong><p>${p.why}</p></div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('active');
-  document.body.style.overflow = '';
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
 }
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target.id==='modalOverlay')closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-document.getElementById('modalOverlay').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold:0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
